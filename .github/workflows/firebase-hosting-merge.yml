@@ -2,10 +2,11 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-'on':
+"on":
   push:
     branches:
       - master
+    paths: "client/**"
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -14,7 +15,7 @@ jobs:
       - run: yarn && yarn run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PRJ_GITHUBACTIONS_TEST }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_PRJ_GITHUBACTIONS_TEST }}"
           channelId: live
           projectId: prj-githubactions-test
