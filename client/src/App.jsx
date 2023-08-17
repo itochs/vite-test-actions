@@ -9,6 +9,7 @@ function App() {
   return (
     <>
     <h1>Github Actions test</h1>
+    <h2>client directory</h2>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
