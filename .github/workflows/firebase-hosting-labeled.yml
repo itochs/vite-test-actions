@@ -14,3 +14,4 @@ jobs:
       - run: echo $t
         env:
           t: "${{github.event.pull_request.labels}}"
+          test: "test"
