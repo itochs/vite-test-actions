@@ -1,9 +1,18 @@
-name: pull_request_target test
+name: pull_request test
 on: pull_request
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "$EVENT"
-        env:
-          EVENT: ${{toJSON(github)}}"
+      - name: "base branch checkout"
+        uses: actions/checkout@v3
+        with:
+          ref: ${{github.base_ref}}
+      - name: "cat workflow"
+        run: cat ./.github/workflows/firebase-hosting-labeled.yml
+      - name: "head branch ckeckout"
+        uses: actions/checkout@v3
+        with:
+          ref: ${{github.head_ref}}
+      - name: "cat workflow"
+        run: cat ./.github/workflows/firebase-hosting-labeled.yml
