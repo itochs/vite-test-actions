@@ -13,7 +13,7 @@ jobs:
       run:
         working-directory: client
     steps:
-      - run: echo $t
+      - run: echo $test
         env:
           t: "${{github.event.pull_request.labels}}"
-          test: "test"
+          test: "testenv"
