@@ -1,5 +1,5 @@
-name: another repository
-on: pull_request_target
+name: another repository(check)
+on: pull_request
 jobs:
   check_secrets:
     if: "${{ github.event.pull_request.head.repo.full_name != github.repository }}"
