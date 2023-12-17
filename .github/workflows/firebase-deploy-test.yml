@@ -1,0 +1,11 @@
+name: upstream-deploy-test
+"on":
+  push:
+    branches:
+      - upstream-change
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "push to run"
