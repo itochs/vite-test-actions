@@ -1,5 +1,5 @@
 name: another repository(check)
-on: pull_request
+on: [pull_request, workflow_dispatch]
 jobs:
   check_secrets_head:
     if: "${{ github.event.pull_request.head.repo.full_name != github.repository }}"
@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{github.head_ref}}
+          ref: ${{github.event.pull_request.head.ref}}
       - run: echo $var
         env:
           TOKEN: ${{secrets.TOKEN}}
@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{github.base_ref}}
+          ref: ${{github.event.pull_request.base.ref}}
       - run: echo $var
         env:
           TOKEN: ${{secrets.TOKEN}}
