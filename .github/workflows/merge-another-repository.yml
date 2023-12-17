@@ -1,0 +1,19 @@
+name: another repository
+on: pull_request
+jobs:
+  check_secrets:
+    if: "${{ github.event.pull_request.head.repo.full_name != github.repository }}"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{github.head_ref}}
+      - run: echo $TOKEN
+        env:
+          TOKEN: ${{secrets.TOKEN}}
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{github.base_ref}}
+      - run: echo $TOKEN
+        env:
+          TOKEN: ${{secrets.TOKEN}}
