@@ -1,6 +1,13 @@
 name: another repository(check)
 on: [pull_request, workflow_dispatch]
 jobs:
+  ac:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+      - uses: ./
   check_secrets_head:
     if: "${{ github.event.pull_request.head.repo.full_name != github.repository }}"
     runs-on: ubuntu-latest
