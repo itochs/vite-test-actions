@@ -2,10 +2,9 @@
 # https://github.com/firebase/firebase-tools
 
 name: check_label
-"on": pull_request_target
+"on": pull_request
 jobs:
   build_and_preview:
-    if: contains(github.event.pull_request.labels.*.name, 'ok to test')
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -13,4 +12,4 @@ jobs:
     steps:
       - run: echo $t
         env:
-          t: "${{github.event.pull_request.labels}}"
+          t: "${{vars.test}}"
