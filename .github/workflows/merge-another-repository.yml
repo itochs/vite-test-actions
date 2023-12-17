@@ -1,7 +1,7 @@
 name: another repository(check)
 on: pull_request
 jobs:
-  check_secrets:
+  check_secrets_head:
     if: "${{ github.event.pull_request.head.repo.full_name != github.repository }}"
     runs-on: ubuntu-latest
     steps:
@@ -12,6 +12,10 @@ jobs:
         env:
           TOKEN: ${{secrets.TOKEN}}
           var: ${{vars.KEY}}
+  check_secrets_base:
+    if: "${{ github.event.pull_request.head.repo.full_name != github.repository }}"
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v3
         with:
           ref: ${{github.base_ref}}
